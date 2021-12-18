@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kpaw.world.entity.City;
 import com.kpaw.world.service.CityService;
-import com.kpaw.world.service.CountryService;
 
 @Controller
 @RequestMapping("/cities")
@@ -23,8 +22,9 @@ public class CityController {
 
 	private CityService cityService;
 
-	public CityController(CityService theCityService, CountryService theCountryService) {
+	public CityController(CityService theCityService) {
 		this.cityService = theCityService;
+
 	}
 
 	@GetMapping("/list")
@@ -93,9 +93,15 @@ public class CityController {
 		if (bindingResult.hasErrors()) {
 			return "cities/city-form";
 		} else {
-			cityService.save(theCity);
-			return "redirect:/cities/list";
-		}
-	}
+			try {
+				cityService.save(theCity);
+				return "redirect:/cities/list";
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 
+		}
+		return "cities/city-form";
+
+	}
 }

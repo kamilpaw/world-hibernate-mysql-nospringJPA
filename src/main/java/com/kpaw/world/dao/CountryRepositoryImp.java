@@ -29,7 +29,7 @@ public class CountryRepositoryImp implements CountryRepository {
 	public List<Country> searchBy(String theCode, String theName, String theRegion) {
 		Session currentSession = sessionFactory.openSession();
 		Query<Country> theQuery = 
-				currentSession.createQuery("from Country where code like :code or name like :name or region like :region", Country.class);
+				currentSession.createQuery("from Country where code like :code and name like :name and region like :region", Country.class);
 		theQuery.setParameter("code", "%" + theCode + "%");
 		theQuery.setParameter("name", "%" + theName + "%");
 		theQuery.setParameter("region", "%" + theRegion + "%");
@@ -41,7 +41,7 @@ public class CountryRepositoryImp implements CountryRepository {
 	public List<Country> orderByRegion() {
 		Session currentSession = sessionFactory.openSession();
 		Query<Country> theQuery = 
-				currentSession.createQuery("from Country by region", Country.class);
+				currentSession.createQuery("from Country order by region", Country.class);
 		List<Country> countries = theQuery.getResultList();
 		return countries;
 	}
@@ -50,7 +50,7 @@ public class CountryRepositoryImp implements CountryRepository {
 	public List<Country> orderByName() {
 		Session currentSession = sessionFactory.openSession();
 		Query<Country> theQuery = 
-				currentSession.createQuery("from Country by name", Country.class);
+				currentSession.createQuery("from Country order by name", Country.class);
 		List<Country> countries = theQuery.getResultList();
 		return countries;
 	}
@@ -59,7 +59,7 @@ public class CountryRepositoryImp implements CountryRepository {
 	public List<Country> orderBySurface() {
 		Session currentSession = sessionFactory.openSession();
 		Query<Country> theQuery = 
-				currentSession.createQuery("from Country by surfaceArea asc", Country.class);
+				currentSession.createQuery("from Country order by surfaceArea asc", Country.class);
 		List<Country> countries = theQuery.getResultList();
 		return countries;
 	}
@@ -68,7 +68,7 @@ public class CountryRepositoryImp implements CountryRepository {
 	public List<Country> orderByCode() {
 		Session currentSession = sessionFactory.openSession();
 		Query<Country> theQuery = 
-				currentSession.createQuery("from Country by code", Country.class);
+				currentSession.createQuery("from Country order by code", Country.class);
 		List<Country> countries = theQuery.getResultList();
 		return countries;
 	}

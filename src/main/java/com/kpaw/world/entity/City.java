@@ -60,6 +60,16 @@ public class City {
 		this.district = district;
 		this.population = population;
 	}
+	
+	public City(Integer id, String name, String countryCode, String district, Integer population) {
+		this.id = id;
+		this.name = name;
+		this.country.setCode(countryCode); 
+		this.district = district;
+		this.population = population;
+	}
+	
+	
 
 	public Integer getId() {
 		return id;

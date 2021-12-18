@@ -28,7 +28,7 @@ public class CountryLanguageRepositoryImp implements CountryLanguageRepository {
 	public List<CountryLanguage> searchBy(String theLanguage, String theCountry) {
 		Session currentSession = sessionFactory.openSession();
 		Query<CountryLanguage> theQuery = currentSession.createQuery(
-				"from CountryLanguage where language like :language or countryCode.name like :country",
+				"from CountryLanguage where language like :language and countryCode.name like :country",
 				CountryLanguage.class);
 		theQuery.setParameter("language", "%" + theLanguage + "%");
 		theQuery.setParameter("country", "%" + theCountry + "%");

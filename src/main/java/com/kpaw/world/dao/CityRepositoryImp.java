@@ -37,10 +37,13 @@ public class CityRepositoryImp implements CityRepository{
 	@Override
 	public void deleteCityById(int theId) {
 		Session currentSession = sessionFactory.openSession();
-		Query<City> theQuery = 
-				currentSession.createQuery("delete from City where id=:cityId", City.class);
+		currentSession.beginTransaction();
+		Query theQuery = 
+				currentSession.createQuery("delete from City where id=:cityId");
 		theQuery.setParameter("cityId", theId);
-		theQuery.executeUpdate();		
+		theQuery.executeUpdate();	
+		currentSession.getTransaction().commit();
+		currentSession.close();
 		
 	}
 
@@ -55,7 +58,7 @@ public class CityRepositoryImp implements CityRepository{
 	public List<City> findByNameAndCountry(String theName, String theCountry){
 		Session currentSession = sessionFactory.openSession();
 		Query<City> theQuery = 
-				currentSession.createQuery("from City where name like :theName or country like :theCountry", City.class);
+				currentSession.createQuery("from City where name like :theName and country.name like :theCountry", City.class);
 		theQuery.setParameter("theName", "%" + theName + "%");
 		theQuery.setParameter("theCountry", "%" + theCountry + "%");
 		List<City> cities = theQuery.getResultList();

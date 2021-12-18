@@ -51,7 +51,7 @@
 							<td><label>Country Code:</label></td>
 							
 							<td>
-								<input type="text" th:field="*{country}" placeholder="Country Code"/>
+								<input type="text"  th:field="*{country.code}" placeholder="Country code"/>
 		
 								<ul>
 							        <li th:each="err : ${#fields.errors('country')}" th:text="${err}" class="error" />

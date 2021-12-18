@@ -25,9 +25,6 @@ public class CountryController {
 	public String showCountries(Model theModel) {
 		List<Country> theCountries = countryService.findAll();
 		theModel.addAttribute("countries", theCountries);
-		Country theCountry = countryService.findById("POL");
-		System.out.println("Poland: number of Cities: " + theCountry.getCities().size());
-		System.out.println("Poland: number of Languages: " + theCountry.getCountryLanguages().size());
 		return "countries/list-countries";
 	}
 
