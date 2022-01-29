@@ -15,7 +15,7 @@ import com.kpaw.world.service.CountryLanguageService;
 @RequestMapping("/languages")
 public class CountryLanguageController {
 
-	private CountryLanguageService countryLanguageService;
+	private final CountryLanguageService countryLanguageService;
 
 	public CountryLanguageController(CountryLanguageService theCountryLanguageService) {
 		countryLanguageService = theCountryLanguageService;

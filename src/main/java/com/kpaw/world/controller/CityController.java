@@ -20,7 +20,7 @@ import com.kpaw.world.service.CityService;
 @RequestMapping("/cities")
 public class CityController {
 
-	private CityService cityService;
+	private final CityService cityService;
 
 	public CityController(CityService theCityService) {
 		this.cityService = theCityService;

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -37,8 +36,8 @@ class CountryServiceImpTest {
 
     @BeforeEach
     void setUp() {
-        country = new Country("code", "name", "regoin", 10.0, (short) 100, 10, 100.0, 100.0, 100.0, "localName", "governmentForm", "headOfState", city, "codeB");
-        country2 = new Country("code2", "name2", "regoin2", 10.0, (short) 100, 10, 100.0, 100.0, 100.0, "localName2", "governmentForm", "headOfState", city, "codeB2");
+        country = new Country("code", "name", "region", 10.0, (short) 100, 10, 100.0, 100.0, 100.0, "localName", "governmentForm", "headOfState", city, "codeB");
+        country2 = new Country("code2", "name2", "region2", 10.0, (short) 100, 10, 100.0, 100.0, 100.0, "localName2", "governmentForm", "headOfState", city, "codeB2");
         countries = new ArrayList<>();
         countries.add(country);
         countries.add(country2);

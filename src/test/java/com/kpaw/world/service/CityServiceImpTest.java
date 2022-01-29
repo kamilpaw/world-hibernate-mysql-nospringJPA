@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
@@ -50,8 +50,8 @@ class CityServiceImpTest {
         given(cityRepository.findAll()).willReturn(cities);
         service.findAll();
         then(cityRepository).should().findAll();
-        assertTrue(cityRepository.findAll().size() == 2);
-        assertTrue(service.findAll().size() == 2);
+        assertEquals(2, cityRepository.findAll().size());
+        assertEquals(2, service.findAll().size());
     }
 
     @Test

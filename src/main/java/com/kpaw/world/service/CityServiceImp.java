@@ -12,7 +12,7 @@ import com.kpaw.world.entity.City;
 @Service
 public class CityServiceImp implements CityService {
 
-	private CityRepository cityRepository;
+	private final CityRepository cityRepository;
 
 	@Autowired
 	public CityServiceImp(CityRepository theCityRepository) {

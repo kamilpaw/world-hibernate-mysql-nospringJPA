@@ -12,7 +12,7 @@ import com.kpaw.world.entity.Country;
 @Service
 public class CountryServiceImp implements CountryService {
 
-	private CountryRepository countryRepository;
+	private final CountryRepository countryRepository;
 
 	@Autowired
 	public CountryServiceImp(CountryRepository theCountryRepository) {

@@ -6,12 +6,12 @@ import com.kpaw.world.entity.CountryLanguage;
 
 public interface CountryLanguageRepository {
 	
-	public List<CountryLanguage> findAll();
+	List<CountryLanguage> findAll();
 
-	public List<CountryLanguage> searchBy(String theLanguage, String theCountry);
+	List<CountryLanguage> searchBy(String theLanguage, String theCountry);
 
-	public List<CountryLanguage> orderByCountry();
+	List<CountryLanguage> orderByCountry();
 
-	public List<CountryLanguage> orderByLanguage();
+	List<CountryLanguage> orderByLanguage();
 
 }

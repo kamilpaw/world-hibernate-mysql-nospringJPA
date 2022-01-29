@@ -52,7 +52,7 @@ public class CityRepositoryImp implements CityRepository{
 		Session currentSession = sessionFactory.openSession();
 		City theCity = currentSession.get(City.class, theId);
 		return theCity;
-	};
+	}
 	
 	@Override
 	public List<City> findByNameAndCountry(String theName, String theCountry){
@@ -63,7 +63,7 @@ public class CityRepositoryImp implements CityRepository{
 		theQuery.setParameter("theCountry", "%" + theCountry + "%");
 		List<City> cities = theQuery.getResultList();
 		return cities;
-	};
+	}
 
 	public List<City> sortByNameAsc(){
 		Session currentSession = sessionFactory.openSession();
@@ -71,7 +71,7 @@ public class CityRepositoryImp implements CityRepository{
 				currentSession.createQuery("from City order by name", City.class);
 		List<City> cities = theQuery.getResultList();
 		return cities;
-	};
+	}
 
 	public List<City> sortByCountryNameAsc(){
 		Session currentSession = sessionFactory.openSession();
@@ -79,7 +79,7 @@ public class CityRepositoryImp implements CityRepository{
 				currentSession.createQuery("from City order by country.name", City.class);
 		List<City> cities = theQuery.getResultList();
 		return cities;
-	};
+	}
 
 	public List<City> sortByPopulationAsc(){
 		Session currentSession = sessionFactory.openSession();

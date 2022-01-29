@@ -6,19 +6,19 @@ import com.kpaw.world.entity.City;
 
 public interface CityService {
 
-	public List<City> findAll();
+	List<City> findAll();
 
-	public List<City> searchBy(String theName, String theCountry);
+	List<City> searchBy(String theName, String theCountry);
 
-	public List<City> orderByName();
+	List<City> orderByName();
 
-	public List<City> orderByCountry();
+	List<City> orderByCountry();
 
-	public List<City> orderByPopulation();
+	List<City> orderByPopulation();
 
-	public void save(City theCity);
+	void save(City theCity);
 
-	public void deleteCityById(int theId);
+	void deleteCityById(int theId);
 
-	public City findById(int theId);
+	City findById(int theId);
 }
