@@ -69,8 +69,4 @@ public class CountryController {
 		return "countries/list-countries";
 	}
 
-	@GetMapping("/advSearchSite")
-	public String advSearchSite() {
-		return "countries/advanced-search";
-	}
 }
