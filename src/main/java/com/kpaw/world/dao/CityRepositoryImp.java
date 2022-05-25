@@ -1,92 +1,87 @@
 package com.kpaw.world.dao;
 
-import java.util.List;
-
+import com.kpaw.world.entity.City;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kpaw.world.entity.City;
+import javax.persistence.EntityManager;
+import java.util.List;
 
 
 @Repository
 public class CityRepositoryImp implements CityRepository{
 
+	private final EntityManager em;
+
 	@Autowired
-	private SessionFactory sessionFactory;
+	public CityRepositoryImp(EntityManager theEntityManager) {
+		em = theEntityManager;
+	}
 
 	@Override
 	public List<City> findAll() {
-		Session currentSession = sessionFactory.openSession();
+		Session currentSession = em.unwrap(Session.class);
 		Query<City> theQuery = 
 				currentSession.createQuery("from City", City.class);
-		List<City> cities = theQuery.getResultList();
-		return cities;
+		return theQuery.getResultList();
+
 	}
 
 	
 	@Override
 	public void save(City theCity) {
-		Session currentSession = sessionFactory.openSession();
+		Session currentSession = em.unwrap(Session.class);
 		currentSession.saveOrUpdate(theCity);
 		
 	}
 
 	@Override
 	public void deleteCityById(int theId) {
-		Session currentSession = sessionFactory.openSession();
-		currentSession.beginTransaction();
-		Query theQuery = 
-				currentSession.createQuery("delete from City where id=:cityId");
+		Session currentSession = em.unwrap(Session.class);
+		Query<City> theQuery =
+				currentSession.createQuery("delete from City where id=:cityId", City.class);
 		theQuery.setParameter("cityId", theId);
-		theQuery.executeUpdate();	
-		currentSession.getTransaction().commit();
-		currentSession.close();
-		
+		theQuery.executeUpdate();
 	}
 
 	@Override
 	public City findById(int theId) {
-		Session currentSession = sessionFactory.openSession();
-		City theCity = currentSession.get(City.class, theId);
-		return theCity;
+		Session currentSession = em.unwrap(Session.class);
+		return currentSession.get(City.class, theId);
 	}
 	
 	@Override
 	public List<City> findByNameAndCountry(String theName, String theCountry){
-		Session currentSession = sessionFactory.openSession();
+		Session currentSession = em.unwrap(Session.class);
 		Query<City> theQuery = 
 				currentSession.createQuery("from City where name like :theName and country.name like :theCountry", City.class);
 		theQuery.setParameter("theName", "%" + theName + "%");
 		theQuery.setParameter("theCountry", "%" + theCountry + "%");
-		List<City> cities = theQuery.getResultList();
-		return cities;
+		return theQuery.getResultList();
 	}
 
 	public List<City> sortByNameAsc(){
-		Session currentSession = sessionFactory.openSession();
+		Session currentSession = em.unwrap(Session.class);
 		Query<City> theQuery = 
 				currentSession.createQuery("from City order by name", City.class);
-		List<City> cities = theQuery.getResultList();
-		return cities;
+		return theQuery.getResultList();
+
 	}
 
 	public List<City> sortByCountryNameAsc(){
-		Session currentSession = sessionFactory.openSession();
+		Session currentSession = em.unwrap(Session.class);
 		Query<City> theQuery = 
 				currentSession.createQuery("from City order by country.name", City.class);
-		List<City> cities = theQuery.getResultList();
-		return cities;
+		return theQuery.getResultList();
 	}
 
 	public List<City> sortByPopulationAsc(){
-		Session currentSession = sessionFactory.openSession();
+		Session currentSession = em.unwrap(Session.class);
 		Query<City> theQuery = 
 				currentSession.createQuery("from City order by population asc", City.class);
-		List<City> cities = theQuery.getResultList();
-		return cities;
+		return theQuery.getResultList();
 	}
 
 }

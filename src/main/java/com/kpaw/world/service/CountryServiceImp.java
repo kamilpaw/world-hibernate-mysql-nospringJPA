@@ -59,8 +59,7 @@ public class CountryServiceImp implements CountryService {
 	@Override
 	@Transactional
 	public Country findById(String theCountryCode) {
-		Country theCountry = countryRepository.findById(theCountryCode);
-		return theCountry;
+		return countryRepository.findById(theCountryCode);
 	}
 
 }

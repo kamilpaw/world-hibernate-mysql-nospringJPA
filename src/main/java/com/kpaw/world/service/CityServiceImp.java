@@ -58,6 +58,7 @@ public class CityServiceImp implements CityService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteCityById(int theId) {
 		cityRepository.deleteCityById(theId);
 	}
@@ -65,8 +66,7 @@ public class CityServiceImp implements CityService {
 	@Override
 	@Transactional
 	public City findById(int theId) {
-		City theCity = cityRepository.findById(theId);
-		return theCity;
+		return cityRepository.findById(theId);
 	}
 
 }
