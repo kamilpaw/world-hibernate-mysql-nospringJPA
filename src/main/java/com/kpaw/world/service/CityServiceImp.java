@@ -3,6 +3,7 @@ package com.kpaw.world.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +16,7 @@ public class CityServiceImp implements CityService {
 	private final CityRepository cityRepository;
 
 	@Autowired
-	public CityServiceImp(CityRepository theCityRepository) {
+	public CityServiceImp(@Qualifier("cityRepositoryJPA") CityRepository theCityRepository) {
 		this.cityRepository = theCityRepository;
 
 	}
